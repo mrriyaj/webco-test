@@ -23,5 +23,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed product colors
         $this->call(ProductColorSeeder::class);
+
+        // Seed product categories
+        $this->call(ProductCategorySeeder::class);
     }
 }
