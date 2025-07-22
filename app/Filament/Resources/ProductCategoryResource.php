@@ -21,9 +21,9 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Product Management';
 
-    protected static ?string $modelLabel = 'Product Category';
+    protected static ?string $modelLabel = 'Category';
 
-    protected static ?string $pluralModelLabel = 'Product Categories';
+    protected static ?string $pluralModelLabel = 'Categories';
 
     public static function form(Form $form): Form
     {

@@ -21,6 +21,10 @@ class ProductColorResource extends Resource
 
     protected static ?string $navigationGroup = 'Product Management';
 
+    protected static ?string $modelLabel = 'Color';
+
+    protected static ?string $pluralModelLabel = 'Colors';
+
     public static function form(Form $form): Form
     {
         return $form
