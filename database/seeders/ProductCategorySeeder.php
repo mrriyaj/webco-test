@@ -67,10 +67,7 @@ class ProductCategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            ProductCategory::updateOrCreate(
-                ['name' => $category['name']], // Find by name
-                $category // Update with all data
-            );
+            ProductCategory::create($category);
         }
     }
 }

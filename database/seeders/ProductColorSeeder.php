@@ -67,10 +67,7 @@ class ProductColorSeeder extends Seeder
         ];
 
         foreach ($colors as $color) {
-            ProductColor::updateOrCreate(
-                ['name' => $color['name']], // Find by name
-                $color // Update with all data
-            );
+            ProductColor::create($color);
         }
     }
 }
