@@ -29,5 +29,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed product types
         $this->call(ProductTypeSeeder::class);
+
+        // Seed products (must be last since it depends on categories and colors)
+        $this->call(ProductSeeder::class);
     }
 }
