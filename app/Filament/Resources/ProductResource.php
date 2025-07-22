@@ -94,6 +94,12 @@ class ProductResource extends Resource
     {
         return $infolist
             ->schema([
+                // Custom Status Bar
+                \App\Infolists\Components\ProductStatusBar::make('status_bar')
+                    ->label('Product Status')
+                    ->message('Hello')
+                    ->columnSpanFull(),
+
                 Infolists\Components\Section::make('Product Information')
                     ->schema([
                         Infolists\Components\TextEntry::make('name')
