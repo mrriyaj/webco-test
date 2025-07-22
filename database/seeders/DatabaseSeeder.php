@@ -15,11 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'), // Ensure to hash the password
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'], // Find by email
+            [
+                'name' => 'admin',
+                'email' => 'admin@example.com',
+                'password' => bcrypt('password'), // Ensure to hash the password
+            ]
+        );
 
         // Seed product colors
         $this->call(ProductColorSeeder::class);

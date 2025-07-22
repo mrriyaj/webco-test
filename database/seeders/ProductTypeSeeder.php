@@ -57,7 +57,10 @@ class ProductTypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            ProductType::create($type);
+            ProductType::updateOrCreate(
+                ['name' => $type['name']], // Find by name
+                $type // Update with all data
+            );
         }
     }
 }
