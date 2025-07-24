@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import "../../../../vendor/filament/filament/resources/css/base.css";
+
+@config 'tailwind.config.js';
+
+@layer components {
+    /* Custom Filament Sidebar Theme */
+    .fi-sidebar {
+        @apply bg-gradient-to-b from-slate-900 via-blue-900 to-indigo-900 text-white shadow-2xl;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Active sidebar item */
+    .fi-sidebar-item[aria-current="page"] {
+        @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+}

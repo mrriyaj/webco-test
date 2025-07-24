@@ -16,8 +16,21 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'), // Ensure to hash the password
         ]);
+
+        // Seed product colors
+        $this->call(ProductColorSeeder::class);
+
+        // Seed product categories
+        $this->call(ProductCategorySeeder::class);
+
+        // Seed product types
+        $this->call(ProductTypeSeeder::class);
+
+        // Seed products (must be last since it depends on categories and colors)
+        \App\Models\Product::factory(120)->create();
     }
 }
