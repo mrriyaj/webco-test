@@ -14,16 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create admin user manually without factory
-        User::create([
-            'name' => 'Admin User',
+        User::factory()->create([
+            'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
 
-        // Create regular user
-        User::create([
-            'name' => 'Test User',
+        User::factory()->create([
+            'name' => 'User',
             'email' => 'user@example.com',
+            'password' => bcrypt('password'),
         ]);
 
         // Seed product colors
