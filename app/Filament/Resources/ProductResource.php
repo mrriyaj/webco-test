@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Jobs\ProcessProductJob;
+use App\Jobs\ExportProductJob;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductColor;
@@ -11,11 +13,13 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ProductResource extends Resource
 {
@@ -242,6 +246,26 @@ class ProductResource extends Resource
                     ->preload(),
             ])
             ->actions([
+                Tables\Actions\Action::make('process')
+                    ->label('Process Product')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->modalHeading('Process Product')
+                    ->modalDescription('This will queue a job to process this product. The product description will be updated with processing information.')
+                    ->modalSubmitActionLabel('Process')
+                    ->action(function (Product $record) {
+                        // Dispatch the job
+                        ProcessProductJob::dispatch($record, Auth::user());
+
+                        // Show immediate notification
+                        Notification::make()
+                            ->title('Job Queued Successfully!')
+                            ->body("Processing job for '{$record->name}' has been queued. You will receive a notification when it's complete.")
+                            ->success()
+                            ->send();
+                    }),
+
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
