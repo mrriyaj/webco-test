@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'admin',
+        // Create admin user manually without factory
+        User::create([
+            'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
 
-        User::factory()->create([
-            'name' => 'user',
-            'email' => 'user@example.com',
+        // Create regular user
+        User::create([
+            'name' => 'Test User',
+            'email' => 'user@example.com', 
             'password' => bcrypt('password'),
         ]);
 
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // Seed product types
         $this->call(ProductTypeSeeder::class);
 
-        // Seed products (must be last since it depends on categories and colors)
-        \App\Models\Product::factory(120)->create();
+        // Call the ProductSeeder instead of using factory
+        $this->call(ProductSeeder::class);
     }
 }
