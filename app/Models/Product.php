@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\ProductCategory;
 use App\Models\ProductColor;
 use App\Models\ProductType;
+use App\Models\TypeAssignment;
 
 class Product extends Model
 {
@@ -28,5 +29,10 @@ class Product extends Model
     public function color()
     {
         return $this->belongsTo(ProductColor::class, 'product_color_id');
+    }
+
+    public function typeAssignments()
+    {
+        return $this->morphMany(TypeAssignment::class, 'type_assignments');
     }
 }
