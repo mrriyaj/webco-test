@@ -58,7 +58,7 @@ class ProcessProductJob implements ShouldQueue
                     ->url(route('products.edit', $this->product->id))
                     ->openUrlInNewTab(),
             ])
-            ->sendToDatabase($this->user);
+            ->database();
 
         // Also send a session notification for immediate feedback
         FilamentNotification::make()
