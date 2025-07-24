@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductTypeSeeder::class);
 
         // Seed products (must be last since it depends on categories and colors)
-        $this->call(ProductSeeder::class);
+        \App\Models\Product::factory(120)->create();
     }
 }

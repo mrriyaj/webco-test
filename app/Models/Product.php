@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProductCategory;
+use App\Models\ProductColor;
+use App\Models\ProductType;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'product_category_id',
@@ -22,5 +28,4 @@ class Product extends Model
     {
         return $this->belongsTo(ProductColor::class, 'product_color_id');
     }
-
 }
