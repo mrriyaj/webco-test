@@ -56,6 +56,7 @@ class ProductFactory extends Factory
             'product_category_id' => ProductCategory::inRandomOrder()->first()->id,
             'product_color_id' => ProductColor::inRandomOrder()->first()->id,
             'description' => $this->faker->paragraph(3),
+            'price' => $this->faker->randomFloat(2, 9.99, 999.99),
         ];
     }
 
