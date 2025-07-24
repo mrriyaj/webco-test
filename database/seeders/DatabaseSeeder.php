@@ -18,7 +18,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('password'), // Ensure to hash the password
+            'password' => bcrypt('password'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'user@example.com',
+            'password' => bcrypt('password'),
         ]);
 
         // Seed product colors
