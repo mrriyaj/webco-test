@@ -23,8 +23,7 @@ class DatabaseSeeder extends Seeder
         // Create regular user
         User::create([
             'name' => 'Test User',
-            'email' => 'user@example.com', 
-            'password' => bcrypt('password'),
+            'email' => 'user@example.com',
         ]);
 
         // Seed product colors
