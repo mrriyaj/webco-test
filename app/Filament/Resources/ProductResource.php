@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Forms\Components\LivewirePriceField;
 use App\Jobs\ProcessProductJob;
 use App\Jobs\ExportProductJob;
 use App\Models\Product;
@@ -91,6 +92,11 @@ class ProductResource extends Resource
                     ->rows(4)
                     ->placeholder('Enter product description')
                     ->columnSpanFull(),
+
+                LivewirePriceField::make('price')
+                    ->label('Price')
+                    ->required()
+                    ->helperText('Price will be validated with external service'),
             ]);
     }
 
@@ -111,6 +117,14 @@ class ProductResource extends Resource
                             ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
                             ->weight('bold')
                             ->color('primary'),
+
+                        Infolists\Components\TextEntry::make('price')
+                            ->label('Price')
+                            ->money('USD')
+                            ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
+                            ->weight('bold')
+                            ->color('success')
+                            ->icon('heroicon-m-currency-dollar'),
 
                         Infolists\Components\TextEntry::make('description')
                             ->label('Description')
@@ -220,6 +234,11 @@ class ProductResource extends Resource
                     })
                     ->wrap(),
 
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Price')
+                    ->money('USD')
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created')
                     ->dateTime()
@@ -281,7 +300,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\TypeAssignmentsRelationManager::class,
         ];
     }
 
